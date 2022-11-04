@@ -3,10 +3,31 @@ import re
 
 app = typer.Typer()
 
+def escape_special_regex_characters(word: str) -> str:
+    special_characters = [
+        r'\.', 
+        r'\+', 
+        r'\*', 
+        r'\?', 
+        r'\^', 
+        r'\$', 
+        r'\(', 
+        r'\)', 
+        r'\[', 
+        r'\]', 
+        r'\{', 
+        r'\}', 
+        r'\|', 
+        r'\\'
+        ]
+    for character in special_characters:
+        word = re.sub(character, character, word) # magic
+    return word
+
 fs = [
     lambda word: word.lstrip(), 
+    escape_special_regex_characters,
     lambda word: re.sub(r'\n', '', word), 
-    lambda word: re.sub(r'\+', r'\+', word), 
     lambda word: r"(^\s*" + word + r"\s*$)", 
 ]
 
