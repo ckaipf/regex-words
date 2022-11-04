@@ -7,5 +7,4 @@ def test_regify_file():
     with open(test_file, "r") as infile:
         for line in infile:
             if not re.search(r'^\s*$', line):
-                if not re.search(pattern=regex, string=line):
-                    raise AssertionError(f"Word {line} not matched by regex.")    
+                assert re.search(pattern=regex, string=line), f"Word {line} not matched by regex."
