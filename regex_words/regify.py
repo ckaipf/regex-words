@@ -49,5 +49,4 @@ def file(
                     word = f(word)
                 words.append(word)
     regex = "|".join(words)
-    print(regex)
     return(regex)
