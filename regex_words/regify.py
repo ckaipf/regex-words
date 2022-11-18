@@ -50,3 +50,21 @@ def file(
                 words.append(word)
     regex = "|".join(words)
     return(regex)
+
+@app.command()
+def file_names(
+    extensions,
+    strict = True,
+) -> str:
+    """
+    Generate a regex to match a file name with the given extensions.
+    Extensions can be either a list or a comma separated string of values (no whitespaces).
+    """
+    if isinstance(extensions, str):
+        extensions = extensions.split(',') 
+
+    if strict:
+        return r"^[a-zA-Z0-9]*\.(" + "|".join(extensions) + r")$"
+    else:
+        return r"^.*\.(" + "|".join(extensions) + r")$"
+ 
