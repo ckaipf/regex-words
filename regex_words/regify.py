@@ -63,8 +63,10 @@ def file_names(
     if isinstance(extensions, str):
         extensions = extensions.split(',') 
 
+    joined_extensions = "|".join(extensions)
+
     if strict:
-        return r"^[a-zA-Z0-9]*\.(" + "|".join(extensions) + r")$"
+        return rf"^[a-zA-Z0-9]*\.({joined_extensions})$"
     else:
-        return r"^.*\.(" + "|".join(extensions) + r")$"
- 
+        return rf"^.*\.({joined_extensions})$"
+    
