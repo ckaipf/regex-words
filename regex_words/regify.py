@@ -26,6 +26,7 @@ def escape_special_regex_characters(word: str) -> str:
 
 fs = [
     lambda word: word.lstrip(), 
+    lambda word: word.rstrip(), 
     escape_special_regex_characters,
     lambda word: re.sub(r'\n', '', word), 
     lambda word: r"(^\s*" + word + r"\s*$)", 
